@@ -1,0 +1,9 @@
+@import "src/components/style/base.scss";
+
+.test-button {
+    @include children-row-margin(0.4em);
+
+    &--wide {
+        width: 100%;
+    }
+}
