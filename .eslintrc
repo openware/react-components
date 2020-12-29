@@ -1,0 +1,56 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:prettier/recommended" // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "project": "./tsconfig.json",
+        "tsconfigRootDir": "./"
+    },
+    "plugins": ["@typescript-eslint", "import"],
+    "rules": {
+        "prettier/prettier": "error",
+        "max-len": ["error", { "code": 180 }],
+        "no-underscore-dangle": ["error", { "allowAfterThis": true, "allow": ["_id"] }],
+        "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+        "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+        "prefer-destructuring": ["error", { "object": true, "array": false }],
+        "react/prop-types": "off",
+        "react/display-name": "off",
+        "react/jsx-props-no-spreading": "off",
+        "max-classes-per-file": 1
+    },
+    "overrides": [
+        {
+            // enable the rule specifically for TypeScript files
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                //   "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true, "allowTypedFunctionExpressions": true, "allowHigherOrderFunctions": true }],
+            }
+        }
+    ],
+    "settings": {
+        "react": {
+            "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+        },
+        "import/resolver": {
+            "typescript": {},
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+            "alias": {
+                "map": [["src", "./src"]]
+            }
+        }
+    }
+}
