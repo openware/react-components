@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import './index.scss';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// eslint-disable-next-line
+export interface ButtonProps extends ButtonHTMLAttributes<any> {
     wide?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ className, wide, ...props }) => {
+export const Button: React.FC<ButtonProps> = ({
+    className,
+    wide,
+    ...props
+}) => {
     return (
         <button
             className={classNames(

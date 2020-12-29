@@ -4,7 +4,11 @@
     "main": "./build/index.js",
     "module": "./build/index.es.js",
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "react-scroll-parallax": "^2.3.5",
+        "react-scrollable-anchor": "^0.6.1",
+        "react-visibility-sensor": "^5.1.1"
+    },
     "files": [
         "build"
     ],
@@ -91,8 +95,8 @@
         "stylelint": "npx stylelint \"**/*.{scss}\"",
         "stylelint:fix": "npx stylelint \"**/*.{scss}\" --fix",
         "build": "rollup -c",
-        "lint": "stylelint \"**/*.{scss}\" && eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx src/ stories/",
-        "lint:fix": "stylelint \"src/**/*.(scss)\" --fix && eslint --ext .js,.jsx,.ts,.tsx src/ stories/ --fix",
+        "lint": "stylelint \"**/*.{scss}\" && eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx src/",
+        "lint:fix": "stylelint \"src/**/*.(scss)\" --fix && eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
         "lint-quiet": "eslint --ext .js,.jsx,.ts,.tsx src/ --quiet",
         "test": "jest --config jest.config.js --coverage --maxWorkers=2",
         "update-snap": "jest --updateSnapshot",
