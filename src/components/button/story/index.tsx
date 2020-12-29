@@ -4,11 +4,13 @@ import { Story } from '@storybook/react';
 import { Button, ButtonProps } from 'src';
 import { createButtonMeta } from './meta';
 
-export default createButtonMeta('Examples / Button');
+export default createButtonMeta('Examples / Test Compoent');
 
 // ---------------
 // Default
-const Default: Story<ButtonProps & { text: string }> = ({ text, ...args }) => <Button {...args}>{text}</Button>;
+const Default: Story<ButtonProps & { text: string }> = ({ text, ...args }) => (
+    <Button {...args}>{text}</Button>
+);
 Default.args = {};
 
 export { Default };
