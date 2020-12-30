@@ -5,8 +5,6 @@
     "module": "./build/index.es.js",
     "license": "MIT",
     "dependencies": {
-        "react-scroll-parallax": "^2.3.5",
-        "react-scrollable-anchor": "^0.6.1",
         "react-visibility-sensor": "^5.1.1"
     },
     "files": [
