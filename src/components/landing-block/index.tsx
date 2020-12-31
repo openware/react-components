@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import React, { useCallback, useMemo } from 'react';
-import VisibilitySensor from 'react-visibility-sensor';
+import React from 'react';
 
 import './index.scss';
 
@@ -10,7 +9,6 @@ interface LandingBlockProps {
     style?: React.CSSProperties;
     contentClassName?: string;
     contentStyle?: React.CSSProperties;
-    onVisible?: (isVisible: boolean) => void;
 }
 
 export const LandingBlock: React.FC<LandingBlockProps> = ({
@@ -19,34 +17,17 @@ export const LandingBlock: React.FC<LandingBlockProps> = ({
     style,
     contentClassName,
     contentStyle,
-    onVisible,
 }) => {
-    const handleChange = useCallback(
-        (isVisible) => {
-            if (onVisible) {
-                onVisible(isVisible);
-            }
-        },
-        [onVisible]
-    );
-
     return (
-        <VisibilitySensor
-            onChange={handleChange}
-            partialVisibility={true}
-            offset={{ top: 500, bottom: 600 }}>
+        <div className={classNames('landing-block', className)} style={style}>
             <div
-                className={classNames('landing-block', className)}
-                style={style}>
-                <div
-                    className={classNames(
-                        'landing-block__content',
-                        contentClassName
-                    )}
-                    style={contentStyle}>
-                    {children}
-                </div>
+                className={classNames(
+                    'landing-block__content',
+                    contentClassName
+                )}
+                style={contentStyle}>
+                {children}
             </div>
-        </VisibilitySensor>
+        </div>
     );
 };

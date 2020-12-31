@@ -1,12 +1,10 @@
 {
     "name": "@openware/react-components",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "./build/index.js",
     "module": "./build/index.es.js",
     "license": "MIT",
-    "dependencies": {
-        "react-visibility-sensor": "^5.1.1"
-    },
+    "dependencies": {},
     "files": [
         "build"
     ],
