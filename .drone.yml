@@ -8,6 +8,8 @@ steps:
     image: node:12
     commands:
       - yarn install
+      - yarn lint
+      - yarn test
       - yarn build
 
   - name: publish
@@ -15,7 +17,8 @@ steps:
     settings:
       token:
         from_secret: npm_token
-      email: cmeulien@heliostech.fr
+      email:
+        from_secret: npm_email
     when:
       branch:
         - master
