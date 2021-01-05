@@ -9,7 +9,7 @@ steps:
     commands:
       - yarn install
       - yarn lint
-      - yarn test
+      - yarn test -u
       - yarn build
 
   - name: publish
