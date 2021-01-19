@@ -7,3 +7,11 @@
         width: 100%;
     }
 }
+
+// Testing theme switching
+.app-root-theme--dark {
+    .test-button {
+        color: white;
+        background: gray;
+    }
+}
