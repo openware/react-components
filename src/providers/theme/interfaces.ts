@@ -9,7 +9,7 @@ export interface ThemeStyle {
     buyColor: string;
     sellColor: string;
     /* widget */
-    widgetBodyBackgroundBolor: string;
+    widgetBodyBackgroundColor: string;
     /* */
     [key: string]: string;
 }
