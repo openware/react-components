@@ -6,7 +6,7 @@ import './index.scss';
 /**
  * Tab properties.
  */
-interface TabProps {
+export interface TabProps {
     /** The content of the tab **/
     children?: React.ReactNode;
     /** Callback fired when a tab is clicked **/

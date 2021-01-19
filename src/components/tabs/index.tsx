@@ -13,21 +13,13 @@ import './index.scss';
 /**
  * Tabs properties.
  */
-interface TabsProps {
+export interface TabsProps {
     /** The content of the tabs **/
     children: JSX.Element[];
     /** Index of first time selected tab **/
     selectedTabIndex?: number;
     /** Css classname to add on the outer container **/
     className?: string;
-    /** Css classname to add on the .tabs__nav container **/
-    tabNavClassName?: string;
-    /** Css classname to add on the .tabs__nav-wrapper container **/
-    tabNavWrapperClassName?: string;
-    /** Css classname to add on the .tabs__panel container **/
-    tabPanelClassName?: string;
-    /** Css classname to add on the .tabs__panel-wrapper container **/
-    tabPanelWrapperClassName?: string;
 }
 
 /**
@@ -37,10 +29,6 @@ const Tabs: React.FC<TabsProps> = ({
     children,
     selectedTabIndex = 0,
     className,
-    tabNavClassName,
-    tabNavWrapperClassName,
-    tabPanelClassName,
-    tabPanelWrapperClassName,
 }) => {
     const [activeTabIndex, setActiveTab] = useState(selectedTabIndex);
 
@@ -71,21 +59,11 @@ const Tabs: React.FC<TabsProps> = ({
 
     return (
         <div className={classNames('tabs', className)}>
-            <div className={classNames('tabs__nav', tabNavClassName)}>
-                <div
-                    className={classNames(
-                        'tabs__nav-wrapper',
-                        tabNavWrapperClassName
-                    )}>
-                    {renderTabs}
-                </div>
+            <div className="tabs__nav">
+                <div className="tabs__nav-wrapper">{renderTabs}</div>
             </div>
-            <div className={classNames('tabs__panel', tabPanelClassName)}>
-                <div
-                    className={classNames(
-                        'tabs__panel-wrapper',
-                        tabPanelWrapperClassName
-                    )}>
+            <div className="tabs__panel">
+                <div className="tabs__panel-wrapper">
                     {renderActiveTabPanel}
                 </div>
             </div>

@@ -4,23 +4,18 @@
     &__nav {
         background: var(--tabsHeaderBackgroundColor);
         border-bottom: 1px solid var(--dividerColor);
-        margin: 0;
         min-width: 100%;
         overflow-x: auto;
-        width: 100%;
 
         &-wrapper {
             display: flex;
             padding: 0 18px;
-            margin: 0;
         }
     }
 
     &__panel {
         background: var(--backgroundColor);
         color: var(--fontColor);
-        margin: 0;
-        padding: 0;
         width: 100%;
 
         &-wrapper {
