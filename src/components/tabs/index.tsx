@@ -10,24 +10,37 @@ import { Tab } from './tab';
 
 import './index.scss';
 
+/**
+ * Tabs properties.
+ */
 interface TabsProps {
+    /** The content of the tabs **/
     children: JSX.Element[];
+    /** Index of first time selected tab **/
     selectedTabIndex?: number;
+    /** Css classname to add on the outer container **/
     className?: string;
+    /** Css classname to add on the .tabs__nav container **/
     tabNavClassName?: string;
+    /** Css classname to add on the .tabs__nav-wrapper container **/
     tabNavWrapperClassName?: string;
+    /** Css classname to add on the .tabs__panel container **/
     tabPanelClassName?: string;
+    /** Css classname to add on the .tabs__panel-wrapper container **/
     tabPanelWrapperClassName?: string;
 }
 
+/**
+ * Tabs component
+ */
 const Tabs: React.FC<TabsProps> = ({
     children,
     selectedTabIndex = 0,
-    className = '',
-    tabNavClassName = '',
-    tabNavWrapperClassName = '',
-    tabPanelClassName = '',
-    tabPanelWrapperClassName = '',
+    className,
+    tabNavClassName,
+    tabNavWrapperClassName,
+    tabPanelClassName,
+    tabPanelWrapperClassName,
 }) => {
     const [activeTabIndex, setActiveTab] = useState(selectedTabIndex);
 

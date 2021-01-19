@@ -11,20 +11,22 @@ export default createMeta('Examples / Tabs');
 // eslint-disable-next-line
 const Default: Story<any> = ({ ...args }) => {
     return (
-        <Tabs {...args}>
-            <Tab panel={<div>Panel of Tab 1</div>}>
-                <p>Tab 1 content</p>
-            </Tab>
-            <Tab panel={<div>Panel of Tab 2</div>}>
-                <p>Tab 2 content</p>
-            </Tab>
-            <Tab panel={<div>Panel of Tab 3</div>} disabled={true}>
-                <p>Tab 3 content</p>
-            </Tab>
-            <Tab panel={<div>Panel of Tab 4</div>}>
-                <p>Tab 4 content</p>
-            </Tab>
-        </Tabs>
+        <div {...args}>
+            <Tabs>
+                <Tab panel={<div>Panel of Tab 1</div>}>
+                    <p>Tab 1 content</p>
+                </Tab>
+                <Tab panel={<div>Panel of Tab 2</div>}>
+                    <p>Tab 2 content</p>
+                </Tab>
+                <Tab panel={<div>Panel of Tab 3</div>} disabled={true}>
+                    <p>Tab 3 content</p>
+                </Tab>
+                <Tab panel={<div>Panel of Tab 4</div>}>
+                    <p>Tab 4 content</p>
+                </Tab>
+            </Tabs>
+        </div>
     );
 };
 

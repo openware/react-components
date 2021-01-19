@@ -3,23 +3,36 @@ import React from 'react';
 
 import './index.scss';
 
+/**
+ * Tab properties.
+ */
 interface TabProps {
-    children?: string | React.ReactNode;
+    /** The content of the tab **/
+    children?: React.ReactNode;
+    /** Callback fired when a tab is clicked **/
     onClick?: (tabIndex: number) => void;
+    /** Index of Tab **/
     tabIndex?: number;
+    /** Css classname to add on the outer container **/
     className?: string;
+    /** If true, the tab will be active **/
     active?: boolean;
+    /** If true, the tab will be disabled **/
     disabled?: boolean;
+    /** Content what will be displayed if tab is active **/
     panel: React.ReactNode;
 }
 
+/**
+ * Tab
+ */
 export const Tab: React.FC<TabProps> = ({
     children,
     className,
     onClick,
     tabIndex,
-    active,
-    disabled,
+    active = false,
+    disabled = false,
 }) => {
     const tabClassNames = classNames(`tab`, className, {
         'tab--active': active,
