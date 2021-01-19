@@ -19,7 +19,7 @@ module.exports = {
     },
     plugins: ['@typescript-eslint', 'import', 'prettier', 'filenames'],
     rules: {
-        'prettier/prettier': 'error',
+        'prettier/prettier': 2,
         'max-len': ['error', { code: 180 }],
         'no-underscore-dangle': [
             'error',
@@ -32,7 +32,10 @@ module.exports = {
         'react/display-name': 'off',
         'react/jsx-props-no-spreading': 'off',
         'max-classes-per-file': 1,
-        'filenames/match-regex': ['warn', /^([a-z][a-z0-9]*)([\-\.][a-z0-9]+)*$/],
+        'filenames/match-regex': [
+            'warn',
+            /^([a-z][a-z0-9]*)([\-\.][a-z0-9]+)*$/,
+        ],
     },
     overrides: [
         {
