@@ -9,3 +9,13 @@
         margin-bottom: $size;
     }
 }
+
+@mixin scroll-style($baseColor) {
+    ::-webkit-scrollbar-track {
+        background: darken($baseColor, 5) !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: darken($baseColor, 15) !important;
+    }
+}

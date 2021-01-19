@@ -6,26 +6,19 @@ import React, {
     createContext,
     useMemo,
 } from 'react';
-import classNames from 'classnames';
-import { ThemeName } from './names';
+import { ThemeName } from './interfaces';
+import { ThemeStyles } from './styles';
 
 export { ThemeName };
-
 export interface ThemeContextProps {
     theme: ThemeName;
-    rootClassName: string;
     changeTheme: (name: ThemeName) => void;
-}
-
-function getRootClassName(themeName: ThemeName): string {
-    return classNames('app-root-theme', `app-root-theme--${themeName}`);
 }
 
 const DefaultTheme: ThemeName = 'light';
 
 const ThemeContext = createContext<ThemeContextProps>({
     theme: DefaultTheme,
-    rootClassName: getRootClassName(DefaultTheme),
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     changeTheme: () => {},
 });
@@ -42,19 +35,27 @@ export const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
         setInnerTheme(newTheme);
     }, []);
 
+    const themeValue = useMemo<ThemeContextProps>(() => {
+        return {
+            theme: innerTheme,
+            changeTheme: handleChange,
+        };
+    }, [innerTheme, handleChange]);
     useEffect(() => {
         if (theme) {
             setInnerTheme(theme);
         }
     }, [theme]);
 
-    const themeValue = useMemo<ThemeContextProps>(() => {
-        return {
-            theme: innerTheme,
-            changeTheme: handleChange,
-            rootClassName: getRootClassName(innerTheme),
-        };
-    }, [innerTheme, handleChange]);
+    useEffect(() => {
+        const style = ThemeStyles[theme];
+        if (style) {
+            Object.keys(style).map((key) => {
+                const value = style[key];
+                document.documentElement.style.setProperty(`--${key}`, value);
+            });
+        }
+    }, [theme]);
 
     return (
         <ThemeContext.Provider value={themeValue}>

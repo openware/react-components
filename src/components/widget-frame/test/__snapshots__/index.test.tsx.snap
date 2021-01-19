@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WidgetFrame snapshot render 1`] = `
+<div
+  className="widget-frame className"
+>
+  <div
+    className="widget-frame__title"
+  >
+    <div
+      className="widget-frame__title-text"
+    >
+      title
+    </div>
+  </div>
+  <div
+    className="widget-frame__children"
+  >
+    Content
+  </div>
+</div>
+`;

@@ -1,0 +1,30 @@
+@import "src/components/style/base.scss";
+
+.widget-frame {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 5px;
+    color: var(--fontColor);
+    background-color: var(--widgetBodyBackgroundBolor);
+
+    &__title {
+        &-text {
+            display: flex;
+            flex-direction: row;
+            padding: 5px 10px;
+        }
+        border-bottom: 1px solid transparent;
+        background-color: var(--headerBackgroundColor);
+        border-bottom-color: var(--borderColor);
+    }
+
+    &__children {
+        flex: 1;
+        display: flex;
+        overflow-y: auto;
+    }
+
+    // @include scroll-style(var(--widgetBodyBackgroundColor));
+}
