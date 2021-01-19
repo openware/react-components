@@ -10,7 +10,7 @@ export const ThemeStyles: { [key: string]: ThemeStyle | undefined } = {
         buyColor: '#386b64',
         sellColor: '#7f424d',
         // /* widget */
-        widgetBodyBackgroundBolor: `#ffffff`,
+        widgetBodyBackgroundColor: `#ffffff`,
     },
     dark: {
         fontColor: '#fff',
@@ -21,6 +21,6 @@ export const ThemeStyles: { [key: string]: ThemeStyle | undefined } = {
         buyColor: '#addbc7',
         sellColor: '#f4b2b0',
         // /* widget */
-        widgetBodyBackgroundBolor: `#1e2841`,
+        widgetBodyBackgroundColor: `#1e2841`,
     },
 };
