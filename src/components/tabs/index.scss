@@ -1,0 +1,26 @@
+@import "src/components/style/base.scss";
+
+.tabs {
+    &__nav {
+        background: var(--tabsHeaderBackgroundColor);
+        border-bottom: 1px solid var(--dividerColor);
+        min-width: 100%;
+        overflow-x: auto;
+
+        &-wrapper {
+            display: flex;
+            padding: 0 18px;
+        }
+    }
+
+    &__panel {
+        background: var(--backgroundColor);
+        color: var(--fontColor);
+        width: 100%;
+
+        &-wrapper {
+            display: flex;
+            padding: 18px;
+        }
+    }
+}

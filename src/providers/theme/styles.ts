@@ -9,6 +9,13 @@ export const ThemeStyles: { [key: string]: ThemeStyle | undefined } = {
         headerBackgroundColor: '#ffffff',
         buyColor: '#386b64',
         sellColor: '#7f424d',
+        disabledFontColor: 'rgba(119, 127, 147, 0.4)',
+        dividerColor: 'rgba(0, 0, 0, 0.25)',
+
+        /* tabs */
+        tabsHeaderBackgroundColor: '#f7f7f7',
+        tabsActiveBorderColor: '#3C78E0',
+
         // /* widget */
         widgetBodyBackgroundColor: `#ffffff`,
     },
@@ -20,6 +27,13 @@ export const ThemeStyles: { [key: string]: ThemeStyle | undefined } = {
         headerBackgroundColor: '#28334e',
         buyColor: '#addbc7',
         sellColor: '#f4b2b0',
+        disabledFontColor: 'rgba(105, 117, 136, 0.4)',
+        dividerColor: 'rgba(255, 255, 255, 0.25)',
+
+        /* tabs */
+        tabsHeaderBackgroundColor: '#28334E',
+        tabsActiveBorderColor: '#3C78E0',
+
         // /* widget */
         widgetBodyBackgroundColor: `#1e2841`,
     },

@@ -4,7 +4,9 @@
     "main": "./build/index.js",
     "module": "./build/index.es.js",
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "react-docgen-typescript": "^1.20.5"
+    },
     "files": [
         "build"
     ],

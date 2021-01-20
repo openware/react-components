@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs snapshot render 1`] = `
+<div
+  class="tabs"
+>
+  <div
+    class="tabs__nav"
+  >
+    <div
+      class="tabs__nav-wrapper"
+    >
+      <div
+        class="tab tab--active"
+      >
+        Tab 1 content
+      </div>
+      <div
+        class="tab"
+      >
+        Tab 2 content
+      </div>
+      <div
+        class="tab"
+      >
+        Tab 3 content
+      </div>
+      <div
+        class="tab"
+      >
+        Tab 4 content
+      </div>
+    </div>
+  </div>
+  <div
+    class="tabs__panel"
+  >
+    <div
+      class="tabs__panel-wrapper"
+    >
+      <div>
+        Panel of Tab 1
+      </div>
+    </div>
+  </div>
+</div>
+`;
