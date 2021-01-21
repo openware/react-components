@@ -36,6 +36,8 @@ module.exports = {
             'warn',
             /^([a-z][a-z0-9]*)([\-\.][a-z0-9]+)*$/,
         ],
+        '@typescript-eslint/no-explicit-any': 'off',
+        'no-console': 'error',
     },
     overrides: [
         {

@@ -5,7 +5,8 @@
     "module": "./build/index.es.js",
     "license": "MIT",
     "dependencies": {
-        "react-docgen-typescript": "^1.20.5"
+        "react-docgen-typescript": "^1.20.5",
+        "react-virtualized": "9.22.2"
     },
     "files": [
         "build"

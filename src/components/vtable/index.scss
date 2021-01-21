@@ -1,0 +1,83 @@
+/** @define vtable */
+@import "src/components/style/base.scss";
+
+$vcell-spacing: 3px;
+$vcell-padding: 15px;
+
+.vtable {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+    &__header {
+        font-size: 12px;
+        display: flex;
+        flex-direction: row;
+        padding: 10px $vcell-padding;
+
+        &-cell {
+            flex: 1;
+            // text-align: center;
+            display: flex;
+            // align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            // align
+            &--left {
+                justify-content: flex-start;
+            }
+
+            &--right {
+                justify-content: flex-end;
+            }
+
+            &:not(:last-child) {
+                margin-right: $vcell-spacing;
+            }
+        }
+    }
+
+    &__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        &-list {
+            outline: none;
+        }
+    }
+
+    &__row-wrapper {
+        display: flex;
+    }
+
+    &__row {
+        flex: 1;
+        display: flex;
+        padding: 0 $vcell-padding;
+    }
+
+    &__cell {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // align
+        &--left {
+            justify-content: flex-start;
+        }
+
+        &--right {
+            justify-content: flex-end;
+        }
+
+        &:not(:last-child) {
+            margin-right: $vcell-spacing;
+        }
+    }
+}
