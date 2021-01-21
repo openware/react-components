@@ -11,9 +11,9 @@ export const ThemeStyles: { [key: string]: ThemeStyle | undefined } = {
         sellColor: '#7f424d',
         disabledFontColor: 'rgba(119, 127, 147, 0.4)',
         dividerColor: 'rgba(0, 0, 0, 0.25)',
+        subheaderBackgroundColor: '#f7f7f7',
 
         /* tabs */
-        tabsHeaderBackgroundColor: '#f7f7f7',
         tabsActiveBorderColor: '#3C78E0',
 
         // /* widget */
@@ -29,9 +29,9 @@ export const ThemeStyles: { [key: string]: ThemeStyle | undefined } = {
         sellColor: '#f4b2b0',
         disabledFontColor: 'rgba(105, 117, 136, 0.4)',
         dividerColor: 'rgba(255, 255, 255, 0.25)',
+        subheaderBackgroundColor: '#28334E',
 
         /* tabs */
-        tabsHeaderBackgroundColor: '#28334E',
         tabsActiveBorderColor: '#3C78E0',
 
         // /* widget */

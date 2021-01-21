@@ -8,12 +8,11 @@ export interface ThemeStyle {
     headerBackgroundColor: string;
     buyColor: string;
     sellColor: string;
-
     disabledFontColor: string;
     dividerColor: string;
+    subheaderBackgroundColor: string;
 
     /* tabs */
-    tabsHeaderBackgroundColor: string;
     tabsActiveBorderColor: string;
 
     /* widget */

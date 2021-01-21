@@ -4,7 +4,7 @@ import { Story } from '@storybook/react';
 import { Button, ButtonProps } from 'src';
 import { createButtonMeta } from './meta';
 
-export default createButtonMeta('Examples / Test Compoent');
+export default createButtonMeta('Examples / Test Component');
 
 // ---------------
 // Default

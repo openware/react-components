@@ -13,7 +13,7 @@ import './index.scss';
 /**
  * Tabs properties.
  */
-export interface TabsProps {
+interface TabsProps {
     /** The content of the tabs **/
     children: JSX.Element[];
     /** Index of first time selected tab **/
@@ -71,4 +71,4 @@ const Tabs: React.FC<TabsProps> = ({
     );
 };
 
-export { Tabs, Tab };
+export { Tabs, Tab, TabsProps };

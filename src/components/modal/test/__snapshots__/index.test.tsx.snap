@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal snapshot render 1`] = `
+<div
+  class="modal"
+>
+  <div
+    class="modal__container"
+  >
+    <div
+      class="modal__container-header"
+    />
+    <div
+      class="modal__container-content"
+    >
+      <div />
+    </div>
+    <div
+      class="modal__container-footer"
+    >
+      <button
+        class="test-button modal__container-footer-cancel"
+      >
+        Cancel
+      </button>
+      <button
+        class="test-button modal__container-footer-confirm"
+      >
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+`;
