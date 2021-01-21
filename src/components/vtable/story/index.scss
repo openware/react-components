@@ -1,0 +1,8 @@
+.vtable-wrapper {
+    height: 300px;
+    display: flex;
+
+    &__vtable {
+        flex: 1;
+    }
+}

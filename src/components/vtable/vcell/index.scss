@@ -1,0 +1,7 @@
+/** @define vcell */
+@import "src/components/style/base.scss";
+
+.vcell {
+    display: inline;
+    @include ellipsis;
+}

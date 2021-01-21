@@ -19,3 +19,12 @@
         background: darken($baseColor, 15) !important;
     }
 }
+
+@mixin ellipsis($nowrap: true) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @if $nowrap {
+        white-space: nowrap;
+    }
+}
