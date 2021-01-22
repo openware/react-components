@@ -23,6 +23,18 @@ steps:
       branch:
         - master
 
+  - name: pulish-storybook
+    image: node:12
+    environment:
+      TOKEN:
+        from_secret: chromatic_token
+    commands:
+      - yarn add --dev chromatic
+      - npx chromatic --project-token $TOKEN
+    when:
+      branch:
+        - master
+
 trigger:
   event:
     - push
