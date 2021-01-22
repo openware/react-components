@@ -23,18 +23,14 @@ steps:
       branch:
         - master
 
-  - name: build-storybook
-    image: node:12
-    commands:
-      - yarn build-storybook
-    when:
-      branch:
-        - feature/build-storybook
-
   - name: pulish-storybook
-    image: plugins/gh-pages
-    settings:
-      pages_directory: /drone/src/storybook-static
+    image: node:12
+    environment:
+      TOKEN:
+        from_secret: chromatic_token
+    commands:
+      - yarn add --dev chromatic
+      - npx chromatic --project-token $TOKEN
     when:
       branch:
         - feature/build-storybook
