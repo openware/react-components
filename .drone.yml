@@ -23,6 +23,14 @@ steps:
       branch:
         - master
 
+  - name: deploy
+    image: node:12
+    commands:
+      - yarn build-storybook
+    when:
+      branch:
+        - feature/build-storybook
+
 trigger:
   event:
     - push
