@@ -5,6 +5,8 @@
     "module": "./build/index.es.js",
     "license": "MIT",
     "dependencies": {
+        "moment": "^2.29.1",
+        "numeral": "^2.0.6",
         "react-docgen-typescript": "^1.20.5",
         "react-virtualized": "9.22.2"
     },
@@ -98,7 +100,7 @@
         "lint": "stylelint \"src/**/*.(scss)\" && eslint --max-warnings 0 --ext .js,.jsx,.ts,.tsx src/",
         "lint:fix": "stylelint \"src/**/*.(scss)\" --fix && eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
         "lint-quiet": "eslint --ext .js,.jsx,.ts,.tsx src/ --quiet",
-        "test": "jest --config jest.config.js --coverage --maxWorkers=2",
+        "test": "jest --config jest.config.js --coverage --maxWorkers=1",
         "update-snap": "jest --updateSnapshot",
         "build-watch": "rollup -c -w"
     }

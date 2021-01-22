@@ -1,0 +1,8 @@
+.history-story-wrapper {
+    height: 300px;
+    display: flex;
+
+    &__widget {
+        flex: 1;
+    }
+}
