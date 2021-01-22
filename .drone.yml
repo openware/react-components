@@ -38,3 +38,4 @@ steps:
 trigger:
   event:
     - push
+
