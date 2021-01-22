@@ -33,9 +33,8 @@ steps:
       - npx chromatic --project-token $TOKEN
     when:
       branch:
-        - feature/build-storybook
+        - master
 
 trigger:
   event:
     - push
-
