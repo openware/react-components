@@ -23,10 +23,18 @@ steps:
       branch:
         - master
 
-  - name: deploy
+  - name: build-storybook
     image: node:12
     commands:
       - yarn build-storybook
+    when:
+      branch:
+        - feature/build-storybook
+
+  - name: pulish-storybook
+    image: plugins/gh-pages
+    settings:
+      pages_directory: /drone/src/storybook-static
     when:
       branch:
         - feature/build-storybook
