@@ -16,11 +16,11 @@ const Default: Story<any> = ({ height, rowHeight, ...args }) => {
     return (
         <div className="trading-story-wrapper" style={{ height }}>
             <TradingViewWidget
-                className="history-story-wrapper__widget"
+                frameClassName="history-story-wrapper__widget"
                 symbol="NASDAQ:AAPL"
-                theme={Themes.DARK}
+                theme="light"
                 locale="en"
-                autosize
+                autosize={true}
             />
         </div>
     );

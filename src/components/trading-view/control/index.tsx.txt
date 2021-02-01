@@ -1,0 +1,197 @@
+import React, { PureComponent, useCallback, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
+
+export enum BarStyles {
+    BARS = '0',
+    CANDLES = '1',
+    HOLLOW_CANDLES = '9',
+    HEIKIN_ASHI = '8',
+    LINE = '2',
+    AREA = '3',
+    RENKO = '4',
+    LINE_BREAK = '7',
+    KAGI = '5',
+    POINT_AND_FIGURE = '6',
+}
+
+export type IntervalTypes =
+    | 1
+    | 3
+    | 5
+    | 15
+    | 30
+    | 60
+    | 120
+    | 180
+    | '1'
+    | '3'
+    | '5'
+    | '15'
+    | '30'
+    | '60'
+    | '120'
+    | '180'
+    | 'D'
+    | 'W';
+
+export type RangeTypes = '1d' | '5d' | '1m' | '3m' | '6m' | 'ytd' | 'all';
+
+export type Themes = 'Light' | 'Dark';
+
+const SCRIPT_ID = 'tradingview-widget-script';
+const CONTAINER_ID = 'tradingview-widget';
+
+interface Props {
+    allow_symbol_change: boolean;
+    autosize: boolean;
+    calendar: boolean;
+    details: boolean;
+    enable_publishing: boolean;
+    height: number;
+    hideideas: boolean;
+    hide_legend: boolean;
+    hide_side_toolbar: boolean;
+    hide_top_toolbar: boolean;
+    hotlist: boolean;
+    interval: IntervalTypes;
+    locale: string;
+    news: string[];
+    no_referral_id: boolean;
+    popup_height: number | string;
+    popup_width: number | string;
+    range: RangeTypes;
+    referral_id: string;
+    save_image: boolean;
+    show_popup_button?: boolean;
+    studies?: string[];
+    style?: BarStyles;
+    symbol: string;
+    theme?: Themes;
+    timezone?: string;
+    toolbar_bg?: string;
+    watchlist?: string;
+    widgetType?: string;
+    width?: number;
+    withdateranges?: boolean;
+}
+
+export const TradingViewWidget: React.FC<Props> = ({
+    allow_symbol_change = true,
+    autosize = false,
+    enable_publishing = false,
+    height = 610,
+    hideideas = true,
+    hide_legend = false,
+    hide_side_toolbar = true,
+    hide_top_toolbar = false,
+    interval = 'D',
+    locale = 'en',
+    save_image = true,
+    show_popup_button = false,
+    style = BarStyles.CANDLES,
+    theme = 'Light',
+    timezone = 'Etc/UTC',
+    toolbar_bg = '#F1F3F6',
+    widgetType = 'widget',
+    width = 980,
+    withdateranges = false,
+    ...restProps
+}) => {
+    const containerId = useMemo(() => {
+        return `${CONTAINER_ID}-${Math.random()}`;
+    }, []);
+
+    const rootStyle: React.CSSProperties = useMemo(() => {
+        return autosize
+            ? {
+                  width: '100%',
+                  height: '100%',
+              }
+            : {};
+    }, [autosize]);
+
+    // componentDidMount = () => this.appendScript(this.initWidget);
+
+    useEffect(() => {
+        appendScript(initWidget)
+    }, []);
+
+    // const componentDidUpdate = useCallback(() => {
+    //     cleanWidget();
+    //     initWidget();
+    // }, []);
+
+    const appendScript = useCallback((onload: () => void) => {
+        if (scriptExists()) {
+            /* global TradingView */
+            if (typeof window.TradingView === 'undefined') {
+                updateOnloadListener(onload);
+                return;
+            }
+            onload();
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.id = SCRIPT_ID;
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = 'https://s3.tradingview.com/tv.js';
+        script.onload = onload;
+        document.getElementsByTagName('head')[0].appendChild(script);
+    }, []);
+
+    const getScriptElement = useCallback(
+        () => document.getElementById(SCRIPT_ID),
+        []
+    );
+
+    const scriptExists = useCallback(() => getScriptElement() !== null, []);
+
+    const updateOnloadListener = useCallback((onload: () => void) => {
+        const script = getScriptElement();
+        const oldOnload = script.onload as () => void;
+        return (script.onload = () => {
+            oldOnload();
+            onload();
+        });
+    }, []);
+
+    const initWidget = useCallback(() => {
+        /* global TradingView */
+        if (
+            typeof window.TradingView === 'undefined' ||
+            !document.getElementById(containerId)
+        )
+            return;
+
+        const { widgetType, ...widgetConfig } = this.props as any;
+        const config: any = { ...widgetConfig, container_id: containerId };
+
+        if (config.autosize) {
+            delete config.width;
+            delete config.height;
+        }
+
+        if (typeof config.interval === 'number') {
+            config.interval = config.interval.toString();
+        }
+
+        if (config.popup_width && typeof config.popup_width === 'number') {
+            config.popup_width = config.popup_width.toString();
+        }
+
+        if (config.popup_height && typeof config.popup_height === 'number') {
+            config.popup_height = config.popup_height.toString();
+        }
+
+        /* global TradingView */
+        new window.TradingView[widgetType](config);
+    }, []);
+
+    const cleanWidget = useCallback(() => {
+        document.getElementById(containerId).innerHTML = '';
+    }, []);
+
+    return <article id={containerId} style={rootStyle} />;
+};

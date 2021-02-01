@@ -49,7 +49,10 @@ export const TradeHistoryWidget: React.FC<TradeHistoryWidgetProps> = ({
 
     return (
         <WidgetFrame header={header} className={className} style={style}>
-            <VTable columns={columns} data={data} />
+            <div className="">
+                <VTable columns={columns} data={data} />
+                <VTable columns={columns} data={data} />
+            </div>
         </WidgetFrame>
     );
 };
