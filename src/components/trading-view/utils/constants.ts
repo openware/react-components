@@ -1,0 +1,2 @@
+
+export const DEFAULT_TRADING_VIEW_INTERVAL = '15';
