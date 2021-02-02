@@ -1,10 +1,13 @@
+/**
 /// <reference types="jquery" />
+*/
 
 /**
  * JQuery mocks
  */
 
 interface JQueryEventObject {}
+interface JQuery {}
 
 /**
  * This is the generic type useful for declaring a nominal type,

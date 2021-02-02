@@ -1,6 +1,5 @@
 import React from 'react';
 import { Story } from '@storybook/react';
-import { Themes } from 'react-tradingview-widget';
 
 import './index.scss';
 
@@ -15,13 +14,7 @@ export default createMeta('Examples / TradingView Widget');
 const Default: Story<any> = ({ height, rowHeight, ...args }) => {
     return (
         <div className="trading-story-wrapper" style={{ height }}>
-            <TradingViewWidget
-                frameClassName="history-story-wrapper__widget"
-                symbol="NASDAQ:AAPL"
-                theme="light"
-                locale="en"
-                autosize={true}
-            />
+            <TradingViewWidget frameClassName="history-story-wrapper__widget" />
         </div>
     );
 };
