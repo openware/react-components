@@ -3,6 +3,7 @@ import React from 'react';
 import './index.scss';
 
 import { WidgetFrame } from '../widget-frame';
+
 export interface TradingViewWidgetProps {
     header?: string;
     frameClassName?: string;
@@ -20,6 +21,7 @@ export const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({
             header={header}
             className={frameClassName}
             style={frameStyle}>
+            <span></span>
         </WidgetFrame>
     );
 };

@@ -1,8 +1,8 @@
-import { Timezone } from '../../charting_library/datafeed-api';
+import { Timezone } from "src/components/trading-view/interfaces/datafeed-api";
 
 /*
-** TimeZones for Daylight Saving Time (Summer time)
-*/
+ ** TimeZones for Daylight Saving Time (Summer time)
+ */
 const zonesDST: { [key: string]: Timezone } = {
     '-780': 'Pacific/Fakaofo',
     '-765': 'Pacific/Chatham',
@@ -28,8 +28,8 @@ const zonesDST: { [key: string]: Timezone } = {
 };
 
 /*
-** TimeZones for Standart Time (Winter time)
-*/
+ ** TimeZones for Standart Time (Winter time)
+ */
 const zonesSTD: { [key: string]: Timezone } = {
     '-825': 'Pacific/Chatham',
     '-780': 'Pacific/Auckland',
@@ -55,8 +55,12 @@ const zonesSTD: { [key: string]: Timezone } = {
     600: 'Pacific/Honolulu',
 };
 
-export const getTradingChartTimezone = (offset: number | string, period: 'DST' | 'STD'): Timezone => {
-    const zone: Timezone = period === 'DST' ? zonesDST[offset] : zonesSTD[offset];
+export const getTradingChartTimezone = (
+    offset: number | string,
+    period: 'DST' | 'STD'
+): Timezone => {
+    const zone: Timezone =
+        period === 'DST' ? zonesDST[offset] : zonesSTD[offset];
 
     return zone ? zone : 'Etc/UTC';
 };

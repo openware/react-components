@@ -1,5 +1,4 @@
 declare module '*.svg';
-
 interface Window {
-    TradingView?: TradingView;
+    TradingView?: any;
 }
