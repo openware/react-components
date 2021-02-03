@@ -1,66 +1,33 @@
 // tslint:disable
-import * as React from 'react';
-import {
-    connect,
-    MapDispatchToPropsFunction,
-    MapStateToProps,
-} from 'react-redux';
+import React from 'react';
 import {
     IChartingLibraryWidget,
     LanguageCode,
     widget,
 } from '../interfaces/charting_library.min';
-import {
-    KlineState,
-    klineUpdatePeriod,
-    klineUpdateTimeRange,
-    Market,
-    MarketsState,
-    RootState,
-    selectChartRebuildState,
-    selectCurrentColorTheme,
-    selectCurrentLanguage,
-    selectCurrentMarket,
-    selectKline,
-    selectMarkets,
-    selectMarketTickers,
-    selectMobileDeviceState,
-} from '../../modules';
-import {
-    rangerSubscribeKlineMarket,
-    rangerUnsubscribeKlineMarket,
-} from '../../modules/public/ranger';
-
-import { CurrentKlineSubscription, dataFeedObject, print } from './api';
+// import { CurrentKlineSubscription } from './api.ts.txt';
 import { widgetOptions, widgetParams } from './config';
 import { getTradingChartTimezone } from './timezones';
 import { periodStringToMinutes, stdTimezoneOffset } from '../utils';
 
-interface ReduxProps {
-    markets: Market[];
+interface Props {
+    markets: string[];
     colorTheme: string;
     chartRebuild: boolean;
-    currentMarket?: Market;
-    tickers: MarketsState['tickers'];
-    kline: KlineState;
+    currentMarket?: string;
+    tickers?: any;
+    kline?: any;
     lang: string;
-    isMobileDevice: boolean;
 }
 
-interface DispatchProps {
-    subscribeKline: typeof rangerSubscribeKlineMarket;
-    unSubscribeKline: typeof rangerUnsubscribeKlineMarket;
-    klineUpdateTimeRange: typeof klineUpdateTimeRange;
-    klineUpdatePeriod: typeof klineUpdatePeriod;
-}
+export const print = (...x) =>
+    window.console.log.apply(null, ['>>>> TC', ...x]);
 
-type Props = ReduxProps & DispatchProps;
-
-export class TradingChartComponent extends React.PureComponent<Props> {
-    public currentKlineSubscription: CurrentKlineSubscription = {};
+export class TradingChart extends React.PureComponent<Props> {
+    // public currentKlineSubscription: CurrentKlineSubscription = {};
     public tvWidget: IChartingLibraryWidget | null = null;
 
-    private datafeed = dataFeedObject(this, this.props.markets);
+    // private datafeed = dataFeedObject(this, this.props.markets);
 
     public componentWillReceiveProps(next: Props) {
         if (
@@ -74,13 +41,9 @@ export class TradingChartComponent extends React.PureComponent<Props> {
         if (
             next.currentMarket &&
             (!this.props.currentMarket ||
-                next.currentMarket.id !== this.props.currentMarket.id)
+                next.currentMarket !== this.props.currentMarket)
         ) {
-            if (
-                this.props.currentMarket &&
-                this.props.currentMarket.id &&
-                this.tvWidget
-            ) {
+            if (this.props.currentMarket && this.tvWidget) {
                 this.updateChart(next.currentMarket);
             } else {
                 this.setChart(
@@ -92,7 +55,7 @@ export class TradingChartComponent extends React.PureComponent<Props> {
         }
 
         if (next.kline && next.kline !== this.props.kline) {
-            this.datafeed.onRealtimeCallback(next.kline);
+            // this.datafeed.onRealtimeCallback(next.kline);
         }
 
         if (next.chartRebuild !== this.props.chartRebuild) {
@@ -122,9 +85,7 @@ export class TradingChartComponent extends React.PureComponent<Props> {
         return (
             <React.Fragment>
                 <div className="cr-table-header__content">
-                    {this.props.currentMarket
-                        ? this.props.currentMarket.name
-                        : ''}
+                    {this.props.currentMarket}
                 </div>
                 <div
                     id={widgetParams.containerId}
@@ -135,12 +96,12 @@ export class TradingChartComponent extends React.PureComponent<Props> {
     }
 
     private setChart = (
-        markets: Market[],
-        currentMarket: Market,
+        markets: string[],
+        currentMarket: string,
         colorTheme: string
     ) => {
-        const { kline, lang, isMobileDevice } = this.props;
-        this.datafeed = dataFeedObject(this, markets);
+        const { kline, lang } = this.props;
+        // this.datafeed = dataFeedObject(this, markets);
         const currentTimeOffset = new Date().getTimezoneOffset();
         const clockPeriod =
             currentTimeOffset === stdTimezoneOffset(new Date()) ? 'STD' : 'DST';
@@ -152,48 +113,46 @@ export class TradingChartComponent extends React.PureComponent<Props> {
         }
 
         const disabledFeatures = {
-            disabled_features: isMobileDevice
-                ? [
-                      'border_around_the_chart',
-                      'chart_property_page_background',
-                      'chart_property_page_scales',
-                      'chart_property_page_style',
-                      'chart_property_page_timezone_sessions',
-                      'chart_property_page_trading',
-                      'compare_symbol',
-                      'control_bar',
-                      'countdown',
-                      'create_volume_indicator_by_default',
-                      'display_market_status',
-                      'edit_buttons_in_legend',
-                      'go_to_date',
-                      'header_chart_type',
-                      'header_compare',
-                      'header_indicators',
-                      'header_saveload',
-                      'header_screenshot',
-                      'header_symbol_search',
-                      'header_undo_redo',
-                      'header_widget_dom_node',
-                      'hide_last_na_study_output',
-                      'hide_left_toolbar_by_default',
-                      'left_toolbar',
-                      'legend_context_menu',
-                      'main_series_scale_menu',
-                      'pane_context_menu',
-                      'show_chart_property_page',
-                      'study_dialog_search_control',
-                      'symbol_info',
-                      'timeframes_toolbar',
-                      'timezone_menu',
-                      'volume_force_overlay',
-                  ]
-                : ['header_symbol_search', 'use_localstorage_for_settings'],
+            disabled_features: [
+                'border_around_the_chart',
+                'chart_property_page_background',
+                'chart_property_page_scales',
+                'chart_property_page_style',
+                'chart_property_page_timezone_sessions',
+                'chart_property_page_trading',
+                'compare_symbol',
+                'control_bar',
+                'countdown',
+                'create_volume_indicator_by_default',
+                'display_market_status',
+                'edit_buttons_in_legend',
+                'go_to_date',
+                'header_chart_type',
+                'header_compare',
+                'header_indicators',
+                'header_saveload',
+                'header_screenshot',
+                'header_symbol_search',
+                'header_undo_redo',
+                'header_widget_dom_node',
+                'hide_last_na_study_output',
+                'hide_left_toolbar_by_default',
+                'left_toolbar',
+                'legend_context_menu',
+                'main_series_scale_menu',
+                'pane_context_menu',
+                'show_chart_property_page',
+                'study_dialog_search_control',
+                'symbol_info',
+                'timeframes_toolbar',
+                'timezone_menu',
+                'volume_force_overlay',
+            ],
         };
 
         const defaultWidgetOptions = {
-            symbol: currentMarket.id,
-            datafeed: this.datafeed,
+            symbol: currentMarket,
+            datafeed: null, // this.datafeed,
             interval: widgetParams.interval,
             container_id: widgetParams.containerId,
             locale: this.languageIncluded(lang)
@@ -219,8 +178,8 @@ export class TradingChartComponent extends React.PureComponent<Props> {
         }
 
         this.tvWidget.onChartReady(() => {
-            this.tvWidget!.activeChart().setSymbol(currentMarket.id, () => {
-                print('Symbol set', currentMarket.id);
+            this.tvWidget!.activeChart().setSymbol(currentMarket, () => {
+                print('Symbol set', currentMarket);
             });
 
             if (previousRange.from !== 0 && previousRange.to !== 0) {
@@ -238,11 +197,11 @@ export class TradingChartComponent extends React.PureComponent<Props> {
         });
     };
 
-    private updateChart = (currentMarket: Market) => {
+    private updateChart = (currentMarket: string) => {
         if (this.tvWidget) {
             this.tvWidget.onChartReady(() => {
-                this.tvWidget!.activeChart().setSymbol(currentMarket.id, () => {
-                    print('Symbol set', currentMarket.id);
+                this.tvWidget!.activeChart().setSymbol(currentMarket, () => {
+                    print('Symbol set', currentMarket);
                 });
             });
         }
@@ -297,29 +256,28 @@ export class TradingChartComponent extends React.PureComponent<Props> {
     };
 }
 
-const reduxProps: MapStateToProps<ReduxProps, {}, RootState> = (state) => ({
-    markets: selectMarkets(state),
-    colorTheme: selectCurrentColorTheme(state),
-    chartRebuild: selectChartRebuildState(state),
-    currentMarket: selectCurrentMarket(state),
-    tickers: selectMarketTickers(state),
-    kline: selectKline(state),
-    lang: selectCurrentLanguage(state),
-    isMobileDevice: selectMobileDeviceState(state),
-});
+// const reduxProps: MapStateToProps<ReduxProps, {}, RootState> = (state) => ({
+//     markets: selectMarkets(state),
+//     colorTheme: selectCurrentColorTheme(state),
+//     chartRebuild: selectChartRebuildState(state),
+//     currentMarket: selectCurrentMarket(state),
+//     tickers: selectMarketTickers(state),
+//     kline: selectKline(state),
+//     lang: selectCurrentLanguage(state),
+// });
 
-const mapDispatchProps: MapDispatchToPropsFunction<DispatchProps, {}> = (
-    dispatch
-) => ({
-    klineUpdateTimeRange: (payload) => dispatch(klineUpdateTimeRange(payload)),
-    subscribeKline: (marketId: string, periodString: string) =>
-        dispatch(rangerSubscribeKlineMarket(marketId, periodString)),
-    unSubscribeKline: (marketId: string, periodString: string) =>
-        dispatch(rangerUnsubscribeKlineMarket(marketId, periodString)),
-    klineUpdatePeriod: (payload) => dispatch(klineUpdatePeriod(payload)),
-});
+// const mapDispatchProps: MapDispatchToPropsFunction<DispatchProps, {}> = (
+//     dispatch
+// ) => ({
+//     klineUpdateTimeRange: (payload) => dispatch(klineUpdateTimeRange(payload)),
+//     subscribeKline: (marketId: string, periodString: string) =>
+//         dispatch(rangerSubscribeKlineMarket(marketId, periodString)),
+//     unSubscribeKline: (marketId: string, periodString: string) =>
+//         dispatch(rangerUnsubscribeKlineMarket(marketId, periodString)),
+//     klineUpdatePeriod: (payload) => dispatch(klineUpdatePeriod(payload)),
+// });
 
-export const TradingChart = connect<ReduxProps, DispatchProps, {}, RootState>(
-    reduxProps,
-    mapDispatchProps
-)(TradingChartComponent);
+// export const TradingChart = connect<ReduxProps, DispatchProps, {}, RootState>(
+//     reduxProps,
+//     mapDispatchProps
+// )(TradingChartComponent);
