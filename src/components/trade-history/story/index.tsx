@@ -14,7 +14,7 @@ export default createMeta('Examples / History Widget');
 // ---------------
 // Default
 // eslint-disable-next-line
-const Default: Story<any> = ({ height, rowHeight, ...args }) => {
+const Default: Story<any> = ({ height }) => {
     return (
         <div className="history-story-wrapper" style={{ height }}>
             <TradeHistoryWidget
@@ -25,7 +25,7 @@ const Default: Story<any> = ({ height, rowHeight, ...args }) => {
     );
 };
 
-const Columns: Story<any> = ({ height, rowHeight, ...args }) => {
+const Columns: Story<any> = ({ height }) => {
     return (
         <div className="history-story-wrapper" style={{ height }}>
             <TradeHistoryWidget
