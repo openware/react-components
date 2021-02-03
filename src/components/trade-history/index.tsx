@@ -13,6 +13,7 @@ export interface TradeHistoryWidgetProps {
     className?: string;
     style?: React.CSSProperties;
     data: PublicTrade[];
+    columns?: VColumnProps<PublicTrade>[];
 }
 
 export const TradeHistoryWidget: React.FC<TradeHistoryWidgetProps> = ({
@@ -20,32 +21,35 @@ export const TradeHistoryWidget: React.FC<TradeHistoryWidgetProps> = ({
     style,
     header = 'History',
     data,
+    columns: propColumns,
 }) => {
     const columns = useMemo<VColumnProps<PublicTrade>[]>(() => {
-        return [
-            {
-                header: 'Time',
-                align: 'left',
-                accessor: (x) => {
-                    return moment(x.created_at).format('HH:mm');
-                },
-            },
-            {
-                header: 'Amount',
-                align: 'right',
-                accessor: (x) => {
-                    return numeral(x.amount).format('0.000000');
-                },
-            },
-            {
-                header: 'Price',
-                align: 'right',
-                accessor: (x) => {
-                    return numeral(x.amount).format('0.0000');
-                },
-            },
-        ];
-    }, []);
+        return propColumns
+            ? propColumns
+            : [
+                  {
+                      header: 'Time',
+                      align: 'left',
+                      accessor: (x) => {
+                          return moment(x.created_at).format('HH:mm');
+                      },
+                  },
+                  {
+                      header: 'Amount',
+                      align: 'right',
+                      accessor: (x) => {
+                          return numeral(x.amount).format('0.000000');
+                      },
+                  },
+                  {
+                      header: 'Price',
+                      align: 'right',
+                      accessor: (x) => {
+                          return numeral(x.amount).format('0.0000');
+                      },
+                  },
+              ];
+    }, [propColumns]);
 
     return (
         <WidgetFrame header={header} className={className} style={style}>

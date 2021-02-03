@@ -1,5 +1,7 @@
 import React from 'react';
 import { Story } from '@storybook/react';
+import moment from 'moment';
+import numeral from 'numeral';
 
 import './index.scss';
 
@@ -23,4 +25,31 @@ const Default: Story<any> = ({ height, rowHeight, ...args }) => {
     );
 };
 
-export { Default };
+const Columns: Story<any> = ({ height, rowHeight, ...args }) => {
+    return (
+        <div className="history-story-wrapper" style={{ height }}>
+            <TradeHistoryWidget
+                className="history-story-wrapper__widget"
+                columns={[
+                    {
+                        header: 'Time',
+                        align: 'left',
+                        accessor: (x) => {
+                            return moment(x.created_at).format('HH:mm');
+                        },
+                    },
+                    {
+                        header: 'Amount',
+                        align: 'right',
+                        accessor: (x) => {
+                            return numeral(x.amount).format('0.000000');
+                        },
+                    },
+                ]}
+                data={jsonData as any}
+            />
+        </div>
+    );
+};
+
+export { Default, Columns };
