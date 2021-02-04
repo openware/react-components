@@ -5,7 +5,7 @@ import numeral from 'numeral';
 
 import './index.scss';
 
-import { TradeHistoryWidget } from '../index';
+import { TradeHistoryWidget } from 'src';
 import { createMeta } from './meta';
 import jsonData from './data/data.json';
 
