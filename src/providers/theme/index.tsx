@@ -28,7 +28,10 @@ interface Props {
     children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<Props> = ({ theme = DefaultTheme, children }) => {
+export const ThemeProvider: React.FC<Props> = ({
+    theme = DefaultTheme,
+    children,
+}) => {
     const [innerTheme, setInnerTheme] = useState<ThemeName>(DefaultTheme);
 
     const handleChange = useCallback((newTheme: ThemeName) => {
