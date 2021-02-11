@@ -11,22 +11,23 @@ $vcell-padding: 15px;
     font-size: 14px;
 
     &__header {
-        font-size: 12px;
         display: flex;
         flex-direction: row;
-        padding: 10px $vcell-padding;
+        font-size: 12px;
+        height: 30px;
+        padding: 0 13px;
 
         &-cell {
-            flex: 1;
-            // text-align: center;
+            align-items: center;
+            color: var(--passiveFontColor);
             display: flex;
-            // align-items: center;
+            flex: 1;
             justify-content: center;
-            white-space: nowrap;
             overflow: hidden;
+            text-align: center;
             text-overflow: ellipsis;
+            white-space: nowrap;
 
-            // align
             &--left {
                 justify-content: flex-start;
             }

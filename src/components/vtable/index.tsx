@@ -9,7 +9,7 @@ import { VCell } from './vcell';
 export type VColumnAlign = 'left' | 'center' | 'right';
 
 export interface VColumnProps<TItem = any> {
-    accessor: (item: TItem) => React.ReactNode;
+    accessor: (item: TItem, index: number) => React.ReactNode;
     header: (() => string) | string | React.ReactNode;
     headerStyle?: React.CSSProperties;
     style?: React.CSSProperties;
@@ -57,7 +57,7 @@ export function VTable<T>({
                                                     ? className(rowData)
                                                     : className
                                             }>
-                                            {accessor(rowData)}
+                                            {accessor(rowData, index)}
                                         </VCell>
                                     </div>
                                 );

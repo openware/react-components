@@ -20,6 +20,8 @@ export interface TabsProps {
     selectedTabIndex?: number;
     /** Css classname to add on the outer container **/
     className?: string;
+    /** Callback on tab change **/
+    onTabChange?: (value: number) => void;
 }
 
 /**
@@ -29,6 +31,7 @@ const Tabs: React.FC<TabsProps> = ({
     children,
     selectedTabIndex = 0,
     className,
+    onTabChange,
 }) => {
     const [activeTabIndex, setActiveTab] = useState(selectedTabIndex);
 
@@ -36,6 +39,7 @@ const Tabs: React.FC<TabsProps> = ({
         (index: number) => {
             if (index !== activeTabIndex) {
                 setActiveTab(index);
+                onTabChange && onTabChange(index);
             }
         },
         [activeTabIndex]
